@@ -1591,7 +1591,7 @@ jQuery(async () => {
                     } 
                     // 首次点击，需要确认
                     else {
-                        if (confirm(`确定要恢复 " ${backup.entityName} - ${backup.chatName} " 的备份吗？\n\n插件将自动接管酒馆，并选中对应的角色/群组，并创建一个【新的聊天】来恢复备份内容。\n\n不论原有聊天记录是否存在，该备份恢复都不会影响任何原有的聊天记录，该备份也不会因为恢复备份而被删除，请勿担心。`)) {
+                        if (confirm(`确定要恢复 " ${backup.entityName} - ${backup.chatName} " 的备份吗？\n\n插件将自动选中对应的角色/群组，并创建一个【新的聊天】来恢复备份内容。\n\n不论原有聊天是否存在，该备份恢复都不会影响或覆盖原聊天记录，该备份也不会被删除，请勿担心。\n\n本次过后，该弹窗后续将不会出现`)) {
                             setUserConfirmedRestore(true); // 设置已确认标志
                             toastr.info(`正在恢复"${backup.entityName} - ${backup.chatName}"的备份...`, '聊天自动备份');
                             closeExtensionsAndBackupUI(); // 先关闭UI
@@ -2483,13 +2483,7 @@ function showHelpPopup() {
         <hr>
         <h1>其他说明</h1>
         <p>插件备份的聊天记录与原记录<strong>完全一致</strong>，包括作者注释、记忆表格等内容。</p>
-        <p><strong>恢复操作通过酒馆的标准后端 API</strong>（加载机制），确保数据完整且不会恢复失败。</p>
-        <p>插件针对不同情景设有多种备份策略：</p>
-        <ul>
-            <li>对<strong>记忆表格</strong>进行专门监听和变更比较，确保编辑版本与聊天记录同步。</li>
-            <li>针对高频事件（如 AI 回复）采用<strong>轮询+强制保存机制</strong>，确保不遗漏重要信息。</li>
-            <li>对其他低频事件则尽可能<strong>模拟酒馆的自动保存机制</strong>。</li>
-        </ul>
+        <p><strong>恢复操作通过酒馆的标准后端 API进行</strong>，确保数据完整且不会恢复失败。</p>
         <p>使用了 <strong>Web Worker 技术</strong>，确保插件运行不会影响酒馆的性能或流畅度（卡顿）。</p>
         <hr>
         <p class="footer-thanks" style="font-style: italic; margin-top: 20px;">如有其他问题、BUG 或建议，欢迎随时反馈！</p>
